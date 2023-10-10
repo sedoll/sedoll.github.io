@@ -114,11 +114,9 @@ const frontEnd = (name, num) => ({
 });
 const frontEnds = [
     frontEnd("HTML5", "90"),
-    frontEnd("CSS3", "85"),
-    frontEnd("CSS Flexbox", "82"),
-    frontEnd("CSS Grid", "35"),
-    frontEnd("SASS/ SCSS", "60"),
-    frontEnd("JavaScript", "50"),
+    frontEnd("CSS3", "70"),
+    frontEnd("JavaScript", "80"),
+    frontEnd("SASS/ SCSS", "70"),
 ];
 /* Front-End End */
 /* Back-End Begin */
@@ -126,7 +124,12 @@ const backEnd = (name, num) => ({
     name,
     num,
 });
-const backEnds = [backEnd("PHP", "55"), backEnd("MySQL", "47")];
+const backEnds = [
+    backEnd("MySQL", "90"),
+    backEnd("Maria", "90"),
+    backEnd("Java", "90"),
+    backEnd("Python", "85"),
+];
 /* Back-End End */
 /* Certificates Begin */
 const certificate = (firstDate, secondDate, name, license, link) => ({
@@ -212,11 +215,10 @@ const framework = (name, num) => ({
     num,
 });
 const frameworks = [
-    framework("Bootstrap", "75"),
-    framework("jQuery", "40"),
-    framework("VueJS", "35"),
-    framework("Angular 2", "20"),
-    framework("React", "10"),
+    framework("Spring", "90"),
+    framework("Bootstrap", "60"),
+    framework("jQuery", "70"),
+    framework("React", "50"),
 ];
 /* Framework End */
 /* Language Begin */
@@ -317,12 +319,9 @@ const skill = (name, num) => ({
     num,
 });
 const skills = [
-    skill("Browser Developer Tools", "70"),
-    skill("PSD to HTML5", "87"),
-    skill("Landing Page", "70"),
-    skill("Responsive Design", "85"),
-    skill("Plugin Elementor", "70"),
-    skill("UI / UX Design", "50"),
+    skill("OpenCV", "90"),
+    skill("Android", "80"),
+    skill("Kotlin", "70"),
 ];
 /* Skills End */
 /* Tool Begin */
@@ -331,12 +330,10 @@ const tool = (name, num) => ({
     num,
 });
 const tools = [
-    tool("Chrome Browser", "80"),
-    tool("Firefox Browser", "63"),
-    tool("Command Line", "55"),
-    tool("Git / Github", "80"),
-    tool("PageSpeed Insights", "88"),
-    tool("Gulp / Webpack / NPM", "70"),
+    tool("Chrome Browser", "90"),
+    tool("Edge Browser", "90"),
+    tool("Command Line", "85"),
+    tool("Git / Github", "85"),
 ];
 /* Tool End */
 /* Programs Begin */
@@ -345,12 +342,9 @@ const program = (name, num) => ({
     num,
 });
 const programs = [
-    program("Avocode", "90"),
-    program("FileZilla (FTP)", "100"),
-    program("Figma", "85"),
-    program("Sublime Text 3", "80"),
-    program("Photoshop", "49"),
-    program("Visual Studio Code", "80"),
+    program("Visual Studio Code", "90"),
+    program("Eclipse", "90"),
+    program("IntelliJ IDEA", "90"),
 ];
 /* Programs End */
 /* Project Begin */

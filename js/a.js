@@ -349,7 +349,7 @@ new Vue({
                 location: 'Lviv, Ukraine',
                 nationality: 'Ukrainian',
                 email: 'roman@matviy.pp.ua',
-                site: 'matviy.pp.ua',
+                site: 'sedoll.github.io',
                 skype: 'romas6ka',
                 phone: '+380 93 88 00 822',
                 mobile: '+380 67 77 19 340',

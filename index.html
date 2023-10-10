@@ -15,7 +15,7 @@
         as="script">
     <link rel="preload" href="./js/vue.min.js" as="script">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" as="script">
-    <link rel="preload" href="./js/main.min.js" as="script">
+    <link rel="preload" href="./js/main.js" as="script">
     <link rel="preload" href="./js/animhead.min.js" as="script">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.0/lazysizes.min.js" as="script">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
@@ -76,24 +76,13 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a class="nav-link" :href="'https://' + about.site">Home <span
+                        <li class="nav-item"><a class="nav-link" href="https://sedoll.github.io">Home <span
                                     class="sr-only">(current)</span></a></li>
                         <li class="nav-item"><a class="nav-link" href="#about"><b>About Me</b></a></li>
-                        <li class="nav-item"><a class="nav-link" href="pdf/Roman.Matviy.CV.pdf"><b>Resume</b></a></li>
                         <li class="nav-item"><a class="nav-link" href="#skillset">Skills</a></li>
                         <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
                         <li class="nav-item"><a class="nav-link" href="#certificates">Certificates</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a class="dropdown-item"
-                                    href="#languages">My Languages</a>
-                                <div class="dropdown-divider"></div><a class="dropdown-item" href="#links">My Links</a>
-                                <div class="dropdown-divider"></div><a class="dropdown-item"
-                                    href="#materials">Additional materials</a>
-                            </div>
-                        </li>
                     </ul>
                 </div>
                 <!-- 깃 허브-->
@@ -170,21 +159,15 @@
                         <div class="col-lg-6 col-md-12 col-12 p-5 align-self-center">
                             <div class="row align-content-center mb-5">
                                 <div class="text align-content-center">
-                                    <p class="text size inline"><span>Hello World ;)</span><br>My name is
+                                    <p class="text size inline"><span>Hello World :&rpar;</span><br>My name is
                                     <h2 class="name inline"><span
-                                            class="wow animated bounceInRight">Roman</span>&nbsp;<span
-                                            class="wow animated bounceInLeft">Matviy</span>&nbsp;</h2>I'm a ukrainian
-                                    <h3 class="profession inline">Full-stack web developer</h3>&nbsp; living in
-                                    <strong>Lviv</strong>city, <strong>Ukraine</strong>. I have a passion for creating
-                                    challenging, intuitive and beautiful products. I like to work on the client-side,
-                                    designing interfaces with CSS and programming awesome experiences with JavaScript. I
-                                    can write solid and well-organized code from scratch, and I have a passion for
-                                    exploring new and emerging web technologies. I ensure that my projects are
-                                    optimised, responsive, cross-browser compatible and accessible for users and search
-                                    engines. Beside that, I like to create stuff with my hands. <br>I want to be
-                                    involved in projects that I can be proud of, join an amazing team and advance my
-                                    development career. Take some time to look at my projects, credentials and if you're
-                                    interested in helping me make this happen, <a href="#contact">let's get in
+                                            class="wow animated bounceInRight">SeHoon</span>&nbsp;<span
+                                            class="wow animated bounceInLeft">OH</span>&nbsp;</h2>I'm From Korea
+                                    <h3 class="profession inline">Full-stack web developer</h3>&nbsp; <p>저는 신입 개발자로, 주로 Java와 Python을 사용하여 소프트웨어를 개발합니다. 
+                                    데이터베이스 관리 시스템으로는 MySQL과 MariaDB를 다룰 수 있으며, 웹 개발에 필요한 HTML, CSS, JavaScript, 그리고 jQuery를 활용할 수 있습니다. 
+                                    새로운 기술과 도전을 즐기며 항상 학습 중이며, 문제 해결 능력을 키우고 싶어 노력하고 있습니다. 
+                                    효율적이고 사용자 친화적인 솔루션을 제공하는 데 관심이 많으며, 협업 능력을 향상시켜 프로젝트에 기여하고 싶습니다. 
+                                    포트폴리오를 통해 제 작업물을 자세히 살펴보실 수 있습니다. 감사합니다!</p> <a href="#contact">let's get in
                                         touch.</a></p>
                                 </div>
                             </div>
@@ -217,7 +200,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="skillBackEnd" class="col-md-4 col-12 mt-4 pt-2">
+                    <div id="skillBackEnd" class="col-md-4 col-12">
                         <div class="section-title wow animated fadeInUp mb-3">
                             <h3>Back-end</h3>
                         </div>
@@ -245,7 +228,7 @@
                     </div>
                     <div id="skill" class="col-md-4 col-12 mt-5">
                         <div class="section-title wow animated fadeInUp mb-3">
-                            <h3>Skills</h3>
+                            <h3>Others</h3>
                         </div>
                         <div class="skills" v-for="(skill, index) of skills"><strong class="text m-2">{{
                                 skill.name}}</strong>
@@ -271,7 +254,7 @@
                     </div>
                     <div id="skillProgramms" class="col-md-4 col-12 mt-5">
                         <div class="section-title wow animated fadeInUp mb-3">
-                            <h3>Programms</h3>
+                            <h3>IDE</h3>
                         </div>
                         <div class="tool" v-for="(program, index) of programs"><strong class="text m-2">{{
                                 program.name}}</strong>
@@ -279,19 +262,6 @@
                                 <div class="progress-bar" role="progressbar" :style="{ width:program.num + '%'}"
                                     aria-valuenow="program.num" aria-valuemin="0" aria-valuemax="100"
                                     :data-color="program.num"><b>{{ program.num}}</b>%</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="skillCMS" class="col-md-4 col-12 mt-5">
-                        <div class="section-title wow animated fadeInUp mb-3">
-                            <h3>CMS</h3>
-                        </div>
-                        <div class="cms" v-for="(cms, index) of cmss"><strong class="text m-2">{{ cms.name}}</strong>
-                            <div class="progress mb-3">
-                                <div class="progress-bar pbp" role="progressbar" :style="{ width:cms.num + '%'}"
-                                    aria-valuenow="cms.num" aria-valuemin="0" aria-valuemax="100" :data-color="cms.num">
-                                    <b>{{ cms.num}}</b>%
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -568,7 +538,7 @@
                 </a>
                     <div class="w-100"></div>
                     <div class="copyright text pt-4 pb-3 mt-3">©&nbsp;Copyright&nbsp;2018&nbsp;-&nbsp;<span
-                            class="copyrightYear"></span>&nbsp;<a :href="'https://' + about.site" class="link">{{
+                            class="copyrightYear"></span>&nbsp;<a href="https://sedoll.github.io" class="link">{{
                             about.fullname}}</a>
                         <p class="w-100 mb-3"></p><a href="https://jigsaw.w3.org/css-validator/check/referer"
                             target="_blank"><img style="border:0;width:88px;height:31px"
@@ -590,11 +560,26 @@
         defer></script>
     <script src="js/vue.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" defer></script>
-    <script src="js/main.min.js" defer></script>
+    <script src="js/main.js" defer></script>
     <script src="js/animhead.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.0/lazysizes.min.js" async defer></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDLVfUDe3mgO5zuGojTYlQ8h_ik7Y0rRs&callback=initMap"
         async defer></script>
+    
+    <!-- 상담 api -->
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/652532e4eb150b3fb99ff97a/1hccktjhr';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
 </body>
 
 </html>
