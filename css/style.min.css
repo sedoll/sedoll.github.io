@@ -326,7 +326,7 @@ section h3 {
 .top {
 	transition: all 5s ease-out;
 	position: relative;
-	z-index: 1
+	z-index: 1;
 }
 
 .top a {
@@ -335,7 +335,7 @@ section h3 {
 	width: 35px;
 	height: 35px;
 	bottom: 5%;
-	right: 3%;
+	left: 3%;
 	position: fixed
 }
 
