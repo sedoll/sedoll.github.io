@@ -14,3 +14,7 @@ url = https://본인아이디:토큰@github.com/아이디/레포지터리주소
 branch를 master -> main 변경
 config의 master를 main으로 변경
 git bash -> git branch -M main
+
+# 변경해야할 코드
+## ${path}/   
+## /project/pro02/web/
