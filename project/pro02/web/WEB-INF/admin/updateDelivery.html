@@ -1,14 +1,9 @@
- <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
- <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
- <c:set var="path" value="<%=request.getContextPath() %>" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qna 작성</title>
-    <%@ include file="../head.jsp" %>
+    <title>배송 정보 작성</title>
 
     <!-- 스타일 초기화 : reset.css 또는 normalize.css -->
     <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" rel="stylesheet">
@@ -17,21 +12,22 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <!-- 스타일 초기화 -->
     <!-- 스타일 초기화 -->
-    <link rel="stylesheet" href="${path}/css/reset.css">
+    <link rel="stylesheet" href="../../css/reset.css">
     <!-- 웹 폰트 -->
-    <link rel="stylesheet" href="${path}/css/font.css">
+    <link rel="stylesheet" href="../../css/font.css">
 
     <!-- css 모듈화 -->
-    <link rel="stylesheet" href="${path}/css/common.css">
-    <link rel="stylesheet" href="${path}/css/hd.css">
-    <link rel="stylesheet" href="${path}/css/ft.css">
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/hd.css">
+    <link rel="stylesheet" href="../../css/ft.css">
+
     <style>
         /* 본문 영역 스타일 */
-        .contents { clear:both; min-height: 100vh; background-image: url("${path}/img/login.jpg");
+        .contents { clear:both; min-height: 100vh; background-image: url("../../img/login.jpg");
             background-repeat: no-repeat; background-position: center -250px; }
         .contents::after { content:""; clear:both; display:block; width:100%; }
 
-        .page { clear:both; width: 100vw; height: 100vh; position:relative; }
+        .page { clear:both; width: 100vw; height: 200vh; position:relative; }
         .page::after { content:""; display:block; width: 100%; clear:both; }
 
         .page_wrap { clear:both; width: 1200px; height: auto; margin:0 auto; }
@@ -93,30 +89,61 @@
 </head>
 <body>
 <div class="wrap">
-    <header class="hd" id="hd">
-        <%@ include file="/header.jsp" %>
-    </header>
+    <header class="hd" id="hd"></header>
     <div class="contents" id="contents">
         <div class="breadcrumb">
-            <p><a href="/">HOME</a> &gt; <a href="/">QnA</a>
-                &gt; <a href="/">QnA 작성</a></p>
+            <p><a href="/">HOME</a> &gt; <a href="/">배송정보</a>
+                &gt; <a href="/">배송정보</a></p>
         </div>
         <section class="page" id="page1">
             <div class="page_wrap">
-                <h2 class="page_tit">QnA 작성</h2>
-                <form action="${path}/AddQnaPro.do" class="frm" method="post">
+                <h2 class="page_tit">배송정보</h2>
+                <form action="../../UpdateDeliveryPostPro.do" class="frm" method="post">
                     <table class="tb1">
                         <tbody>
                         <tr>
-                            <td colspan="2"><input type="text" name="title" id="title" class="indata" placeholder="제목 입력" autofocus required></td>
+                            <th>배송 분류</th>
+                            <td colspan="2">
+                                <select name="pstate" id="pstate" class="indata" autofocus required>
+                                    <option value="0" ${deli.pstate eq "0" ? 'selected' : ''}>출고</option>
+                                    <option value="1" ${deli.pstate eq "1" ? 'selected' : ''}>배송중</option>
+                                    <option value="2" ${deli.pstate eq "2" ? 'selected' : ''}>배송완료</option>
+                                    <option value="3" ${deli.pstate eq "3" ? 'selected' : ''}>구매완료</option>
+                                </select>
+                            </td>
+                            <input type="hidden" name="dno" id="dno" value="${deli.dno}" readonly>
                         </tr>
                         <tr>
-                            <td colspan="2"> <textarea name="content" id="content" cols="50" rows="15" placeholder="내용 입력" required></textarea></td>
+                            <th>구매자</th>
+                            <td colspan="2"><input type="text" name="cid" id="cid" class="indata" value="${deli.cid}" readonly></td>
+                        </tr>
+                        <tr>
+                            <th>주소</th>
+                            <td colspan="2"><input type="text" name="daddr" id="daddr" class="indata" value="${deli.daddr}" readonly></td>
+                        </tr>
+                        <tr>
+                            <th>배송회사</th>
+                            <td colspan="2"><input type="text" name="pcom" id="pcom" class="indata" value="${deli.pcom}" required></td>
+                        </tr>
+                        <tr>
+                            <th>기사번호</th>
+                            <td colspan="2"><input type="text" name="ptel" id="ptel" class="indata" value="${deli.ptel}" required></td>
+                        </tr>
+                        <tr>
+                            <th>운송번호</th>
+                            <td colspan="2"><input type="text" name="bcode" id="bcode" class="indata" value="${deli.bcode}" required></td>
+                        </tr>
+                        <tr>
+                            <th>배송날짜</th>
+                            <td colspan="2"><input type="text" name="rdate" id="rdate" class="indata" value="${deli.rdate}" required maxlength="13"></td>
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <input type="submit" value="글쓰기" class="inbtn">
+                                <c:if test="${deli.pstate ne '3'}">
+                                    <input type="submit" value="상품등록" class="inbtn">
+                                </c:if>
                                 <input type="reset" value="취소" class="inbtn" onclick="window.history.back();">
+                                <a href="../../ProList.do" class="inbtn">상품목록</a>
                             </td>
                         </tr>
                         </tbody>
@@ -125,9 +152,13 @@
             </div>
         </section>
     </div>
-    <footer class="ft" id="ft">
-        <%@ include file="/footer.jsp" %>
-    </footer>
+    <footer class="ft" id="ft"></footer>
+    <script>
+        $(document).ready(function(){
+            $('#hd').load("../../header.html");
+            $('#ft').load("../../footer.html");
+        });
+    </script>
 </div>
 </body>
 </html>

@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시글 작성</title>
+    <title>상품 정보 작성</title>
     <%@ include file="/head.jsp" %>
 
     <!-- 스타일 초기화 : reset.css 또는 normalize.css -->
@@ -17,21 +17,21 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <!-- 스타일 초기화 -->
     <!-- 스타일 초기화 -->
-    <link rel="stylesheet" href="${path}/css/reset.css">
+    <link rel="stylesheet" href="../../css/reset.css">
     <!-- 웹 폰트 -->
-    <link rel="stylesheet" href="${path}/css/font.css">
+    <link rel="stylesheet" href="../../css/font.css">
 
     <!-- css 모듈화 -->
-    <link rel="stylesheet" href="${path}/css/common.css">
-    <link rel="stylesheet" href="${path}/css/hd.css">
-    <link rel="stylesheet" href="${path}/css/ft.css">
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/hd.css">
+    <link rel="stylesheet" href="../../css/ft.css">
     <style>
         /* 본문 영역 스타일 */
-        .contents { clear:both; min-height: 100vh; background-image: url("${path}/img/login.jpg");
+        .contents { clear:both; min-height: 100vh; background-image: url("../../img/login.jpg");
             background-repeat: no-repeat; background-position: center -250px; }
         .contents::after { content:""; clear:both; display:block; width:100%; }
 
-        .page { clear:both; width: 100vw; height: 100vh; position:relative; }
+        .page { clear:both; width: 100vw; height: 200vh; position:relative; }
         .page::after { content:""; display:block; width: 100%; clear:both; }
 
         .page_wrap { clear:both; width: 1200px; height: auto; margin:0 auto; }
@@ -94,29 +94,57 @@
 <body>
 <div class="wrap">
     <header class="hd" id="hd">
-        <%@ include file="/header.jsp" %>
     </header>
     <div class="contents" id="contents">
         <div class="breadcrumb">
-            <p><a href="/">HOME</a> &gt; <a href="/board/boardList.jsp">공지사항</a>
-                &gt; <a href="/board/addBoard.jsp">공지사항 작성</a></p>
+            <p><a href="/">HOME</a> &gt; <a href="/">상품추가</a>
+                &gt; <a href="/">상품 추가</a></p>
         </div>
         <section class="page" id="page1">
             <div class="page_wrap">
-                <h2 class="page_tit">공지사항 작성</h2>
-                <form action="${path}/AddNoticePro.do" class="frm" method="post">
+                <h2 class="page_tit">상품 추가</h2>
+                <form action="../../AddProductPro.do" class="frm" method="post" enctype="multipart/form-data">
                     <table class="tb1">
                         <tbody>
                         <tr>
-                            <td colspan="2"><input type="text" name="title" id="title" class="indata" placeholder="제목 입력" autofocus required></td>
+                            <th>카테고리</th>
+                            <td colspan="2">
+                                <select name="cate" id="cate" class="indata" autofocus required>
+                                    <option value="초등" selected>초등</option>
+                                    <option value="중등">중등</option>
+                                    <option value="고등">고등</option>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
-                            <td colspan="2"> <textarea name="content" id="content" cols="50" rows="15" placeholder="내용 입력" required></textarea></td>
+                            <th>상품 이름</th>
+                            <td colspan="2"><input type="text" name="pname" id="pname" class="indata" placeholder="상품 이름 입력" required></td>
+                        </tr>
+                        <tr>
+                            <th>상품 설명</th>
+                            <td colspan="2"> <textarea name="pcomment" id="pcomment" cols="50" rows="15" placeholder="상품 설명 입력" required></textarea></td>
+                        </tr>
+                        <tr>
+                            <th>상품 목차</th>
+                            <td colspan="2"> <textarea name="plist" id="plistt" cols="50" rows="8" placeholder="상품 목차 입력" required></textarea></td>
+                        </tr>
+                        <tr>
+                            <th>상품 가격</th>
+                            <td colspan="2"><input type="text" name="price" id="price" class="indata" placeholder="상품 가격 입력" required></td>
+                        </tr>
+                        <tr>
+                            <th>이미지</th>
+                            <td colspan="2"><input type="file" name="imgsrc1" id="imgsrc1" class="indata" placeholder="상품 이미지" accept=".jpg, .png" required></td>
+                        </tr>
+                        <tr>
+                            <th>샘플 영상</th>
+                            <td colspan="2"><input type="file" name="imgsrc2" id="imgsrc2" class="indata" placeholder="상품 소개 영상" accept=".mp4" required></td>
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <input type="submit" value="글쓰기" class="inbtn">
+                                <input type="submit" value="상품등록" class="inbtn">
                                 <input type="reset" value="취소" class="inbtn" onclick="window.history.back();">
+                                <a href="../../ProList.do" class="inbtn">상품목록</a>
                             </td>
                         </tr>
                         </tbody>
@@ -126,8 +154,13 @@
         </section>
     </div>
     <footer class="ft" id="ft">
-        <%@ include file="/footer.jsp" %>
     </footer>
+    <script>
+        $(document).ready(function(){
+            $('#hd').load("../../header.html");
+            $('#ft').load("../../footer.html");
+        });
+    </script>
 </div>
 </body>
 </html>

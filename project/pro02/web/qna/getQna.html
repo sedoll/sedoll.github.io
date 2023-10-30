@@ -1,22 +1,9 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%@ page import="java.sql.*" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.text.*" %>
-<%@ page import="java.util.Date" %>
-<%@ page import="shop.dto.Notice" %>
-<%@ page import="shop.model.DBConnect" %>
-<%@ page import="shop.model.MariaDBCon" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="path" value="<%=request.getContextPath() %>" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>자유 게시판 상세</title>
-    <%@ include file="../head.jsp" %>
+    <title>상품 상세</title>
 
     <!-- 스타일 초기화 : reset.css 또는 normalize.css -->
     <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" rel="stylesheet">
@@ -28,17 +15,19 @@
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
 
     <!-- 스타일 초기화 -->
-    <link rel="stylesheet" href="${path}/css/reset.css">
+    <link rel="stylesheet" href="../css/reset.css">
     <!-- 웹 폰트 -->
-    <link rel="stylesheet" href="${path}/css/font.css">
+    <link rel="stylesheet" href="../css/font.css">
 
     <!-- css 모듈화 -->
-    <link rel="stylesheet" href="${path}/css/common.css">
-    <link rel="stylesheet" href="${path}/css/hd.css">
-    <link rel="stylesheet" href="${path}/css/ft.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/hd.css">
+    <link rel="stylesheet" href="../css/ft.css">
+    <link rel="stylesheet" href="../css/video.css">
     <style>
         /* 본문 영역 스타일 */
-        .contents { clear:both; min-height: 180vh; background-image: url("${path}/img/login.jpg");
+        /* background-image: url("../img/login.jpg"); */
+        .contents { clear:both; min-height: 250vh; background-image: url("../img/login.jpg");
             background-repeat: no-repeat; background-position: center -250px; }
         .contents::after { content:""; clear:both; display:block; width:100%; }
 
@@ -106,6 +95,7 @@
 
 
         }
+
         .content > div {
             min-height: 400px;
             border-bottom: 1px solid #7e7e7e;
@@ -242,53 +232,114 @@
         }
     </style>
 </head>
+
 <body>
 <div class="wrap">
     <header class="hd" id="hd">
-        <%@ include file="../header.jsp" %>
     </header>
     <div class="contents" id="contents">
         <div class="breadcrumb">
-            <p><a href="/">HOME</a> &gt; <a href="/board/boardList.jsp">공지사항</a></p>
+            <p><a href="/">HOME</a> &gt; <a href="">QnA</a> &gt; <a href="">QnA 상세</a></p>
         </div>
         <section class="page" id="page1">
             <div class="page_wrap">
-                <h2 class="page_tit">게시글</h2>
+                <h2 class="page_tit">QnA 상세</h2>
                 <table class="tb1">
+
                     <thead>
                         <tr class="title">
-                            <th colspan="5">${noti.title}</th>
+                            <th colspan="5">${board.title}</th>
                         </tr>
                         <tr>
                             <td>
-                                <c:if test="${sid eq 'admin' }">
-                                    <a href="${path}/UpdateNotice.do?no=${noti.no}" class="inbtn">수정</a>
-                                </c:if>
+                                <a href="../UpdateQna.do?qno=${board.qno}&lev=0" class="inbtn">수정</a>
                             </td>
                             <td>
-                                <c:if test="${sid eq 'admin' }">
-                                    <a href="${path}/DeleteNotice.do?no=${noti.no}" class="inbtn delete_btn">삭제</a>
-                                </c:if>
+                                <a href="../DeleteQna.do?qno=${board.qno}&lev=0" class="inbtn delete_btn">삭제</a>
                             </td>
-                            <td>관리자</td>
-                            <td>${noti.resdate}</td>
-                            <td>조회수 ${noti.visited}</td>
+                            <td>${board.cid}</td>
+                            <td>${board.cnt}</td>
+                            <td>${board.resdate}</td>
                         </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td colspan="5" class="content">
-                            <div>${noti.content}</div>
+                            <div>${board.content}</div>
                         </td>
                     </tr>
                     </tbody>
                 </table>
+                <table class="tb2" id="myTable">
+                    <thead>
+                    <tr>
+                        <th class="item1">작성자</th>
+                        <th class="item2">댓글</th>
+                        <th class="item3">작성일</th>
+                        <th class="item4"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="item1">${con.cid}</td>
+                            <td class="item2">${con.content}</td>
+                            <td class="item3">${con.resdate}</td>
+                            <td class="item4">
+                                    <%--                            0813 댓글 수정버튼 표시안되어 코드 수정. by 백준철--%>
+                                    <a href="../UpdateQna.do?qno=${con.qno}&lev=1" class="inbtn">수정</a>
+                                    <a href="../DeleteQna.do?qno=${con.qno}&lev=1" class="inbtn delete_btn"> 삭제 </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <script>
+                    $(document).ready( function () {
+                        $('#myTable').DataTable({
+                            // sorting 화살표 제거
+                            "targets": 'no-sort',
+                            "bSort": false,
+
+                            // 3번째 컬럼을 기준으로 내림차순 정렬
+                            order: [[3, 'asc']],
+                            pageLength : 5,
+                            searching: false, //검색 제거
+                            lengthChange: false, // show entries 제거
+                            info: false,
+
+                            language: {
+                                emptyTable: '작성된 댓글이 없습니다.'
+                            }
+                        });
+                        $('#myTable').css({
+                            'border':'none',
+                        });
+
+                    } );
+                </script>
+                <form action="../AddComment.do" id="login_frm" class="frm">
+                    <table class="tb3">
+                        <tbody>
+                        <tr>
+                            <th>${sid}</th>
+                            <th><textarea name="content" id="content" cols="100" rows="5" placeholder="댓글 입력" required ></textarea></th>
+                            <th><input type="submit" value="글쓰기" class="inbtn" id="ans_btn"></th>
+                            <input type="hidden" name="qno" value="${board.qno}" readonly>
+                            <input type="hidden" name="id" value="${sid}" readonly>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
             </div>
         </section>
     </div>
     <footer class="ft" id="ft">
-        <%@ include file="../footer.jsp" %>
     </footer>
+    <script>
+        $(document).ready(function(){
+            $('#hd').load("../header.html");
+            $('#ft').load("../footer.html");
+        });
+    </script>
 </div>
 </body>
 </html>
